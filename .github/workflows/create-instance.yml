@@ -18,7 +18,8 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
       - name: Run instance creation
-        run: php index.php
+        id: create
+        run: php index.php 2>&1 | tee output.log
         env:
           OCI_REGION: ${{ secrets.OCI_REGION }}
           OCI_USER_ID: ${{ secrets.OCI_USER_ID }}
